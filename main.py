@@ -51,7 +51,7 @@ async def mem(message: types.Message):
 async def echo(message: types.Message):
     try:
         n = float(message.text)
-        await message.answer(n*n)
+        await message.answer(n**2)
     except:
         await bot.send_message(message.from_user.id, message.text)
 
