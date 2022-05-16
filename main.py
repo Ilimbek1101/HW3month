@@ -5,6 +5,7 @@ import logging
 
 client.register_handler_client(dp)
 callback.register_handler_callback(dp)
+admin.register_handlers_admin(dp)
 extra.register_message_handler_extra(dp)
 
 

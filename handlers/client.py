@@ -2,13 +2,10 @@ from aiogram import types, Dispatcher
 from config import bot, dp
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode
 
-# @dp.message_handler(commands=['mem'])
 async def mem(message: types.Message):
     mem = open("mempicture/shoes.jpg", "rb")
     await bot.send_photo(message.from_user.id, photo=mem)
 
-
-@dp.message_handler(commands=['test'])
 async def test_1(message: types.Message):
     markup = InlineKeyboardMarkup()
     button_call_1 = InlineKeyboardButton("NEXT", callback_data="button_call_1")
