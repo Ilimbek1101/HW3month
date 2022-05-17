@@ -1,5 +1,6 @@
 from aiogram import types, Dispatcher
 from config import bot, ADMIN
+from aiogram.dispatcher.filters import Text
 import random
 
 async def game(message: types.Message):
@@ -14,4 +15,4 @@ async def game(message: types.Message):
         await message.answer("Это работает только в группах!")
 
 def register_handlers_admin(dp: Dispatcher):
-    dp.register_message_handler(game, commands=['ame'], commands_prefix="g/")
+    dp.register_message_handler(game, Text(startswith='game'))
