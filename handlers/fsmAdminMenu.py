@@ -50,7 +50,6 @@ async def load_price(message: types.Message, state: FSMContext):
     except:
         await message.answer("Цена должна быть только в цифрах!!!")
 
-
 async def cancel_registration(message: types.Message, state: FSMContext):
     current_state = await state.get_state()
     if current_state is None:
