@@ -6,7 +6,7 @@ async def echo(message: types.Message):
         n = float(message.text)
         await message.answer(n**2)
     except:
-        await bot.send_message(message.from_user.id, message.text)
+        await bot.send_message(message.chat.id, message.text)
 
     if message.reply_to_message:
         if message.text.startswith("!pin"):
