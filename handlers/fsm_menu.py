@@ -50,12 +50,6 @@ async def load_price(message: types.Message, state: FSMContext):
     except:
         await message.answer("Цена должна быть только в цифрах!!!")
 
-# async def load_region(message: types.Message, state: FSMContext):
-#     async with state.proxy() as data:
-#         data['region'] = message.text
-#         print(data)
-#     await state.finish()
-#     await message.answer("Все свободен!")
 
 async def cancel_registration(message: types.Message, state: FSMContext):
     current_state = await state.get_state()
@@ -68,9 +62,9 @@ async def cancel_registration(message: types.Message, state: FSMContext):
 def register_handler_fsmmenu(dp: Dispatcher):
     dp.register_message_handler(cancel_registration, state='*', commands="cancel")
     dp.register_message_handler(cancel_registration, Text(equals='cancel', ignore_case=True), state='*',)
-    dp.register_message_handler(fsm_start_menu, commands=['register'])
+    dp.register_message_handler(fsm_start_menu, commands=['menu'])
     dp.register_message_handler(load_photo, state=FSMAdmin.photo, content_types=["photo"])
     dp.register_message_handler(load_name, state=FSMAdmin.name)
     dp.register_message_handler(load_description, state=FSMAdmin.description)
     dp.register_message_handler(load_price, state=FSMAdmin.price)
-    # dp.register_message_handler(load_region, state=FSMAdmin.region)
+
