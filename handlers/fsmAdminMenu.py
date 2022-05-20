@@ -16,11 +16,14 @@ class FSMAdmin(StatesGroup):
 
 async def fsm_start_menu(message: types.Message):
     if message.chat.type == 'private':
-        await FSMAdmin.photo.set()
-        await bot.send_message(
-            message.chat.id,
-            f"Привет {message.from_user.full_name}, скинь фотку блюда",
-            reply_markup=cancel_markup
+        if message.from_user.id != ADMIN:
+            await message.reply("Ты не админ, для тебя данная команда не работает!")
+        else:
+            await FSMAdmin.photo.set()
+            await bot.send_message(
+                message.chat.id,
+                f"Привет {message.from_user.full_name}, скинь фотку блюда",
+                reply_markup=cancel_markup
         )
     else:
         await message.answer("Пиши в личку!")
