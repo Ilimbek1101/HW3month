@@ -2,6 +2,8 @@ from aiogram import types, Dispatcher
 from config import bot, dp
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode
 
+from hwparser import lastvideos
+
 async def mem(message: types.Message):
     mem = open("mempicture/shoes.jpg", "rb")
     await bot.send_photo(message.from_user.id, photo=mem)
@@ -24,6 +26,15 @@ async def test_1(message: types.Message):
         reply_markup=markup
     )
 
+async def parser_videos(message: types.Message):
+    data = lastvideos.parser()
+    for item in data:
+        await bot.send_message(message.chat.id,
+                               f"{item['title']}\n"
+                               f"{item['desc']}\n\n"
+                               f"{item['link']}")
+
 def register_handler_client(dp: Dispatcher):
     dp.register_message_handler(mem, commands=['mem'])
     dp.register_message_handler(test_1, commands=['test'])
+    dp.register_message_handler(parser_videos, commands=['videos'])
